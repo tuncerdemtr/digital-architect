@@ -452,7 +452,8 @@
       background:
         radial-gradient(900px 320px at 20% 0%, rgba(155,246,255,.14), transparent 60%),
         radial-gradient(900px 320px at 80% 10%, rgba(199,249,204,.12), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+        linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.04) 60%, rgba(255,255,255,.06) 100%);
+      background-color: rgba(255,255,255,.06);
     }
     .resultHero.hasImg{
       background-size: cover;
@@ -516,7 +517,7 @@
       background: rgba(255,255,255,.03);
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:flex-start;
       gap:10px;
     }
     .pcChip{
@@ -547,6 +548,17 @@
       font-size: 12px;
       line-height: 1.55;
       color: var(--muted2);
+    }
+
+    .pcMedia{
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+    }
+    .pcMedia img{
+      display:block;
+      width:100%;
+      height: 180px;
+      object-fit: cover;
     }
 
     .resultLower{
@@ -867,8 +879,8 @@
       <aside class="side">
         <div class="sideHeader">
           <div class="kicker">Teklif</div>
-          <div class="h1" style="margin-top:8px;font-size:18px;">Kaydet / CRM</div>
-          <p class="sub" style="margin-top:8px;">Teklif PDF olarak indirilebilir. CRM butonu JSON’u kopyalar.</p>
+          <div class="h1" style="margin-top:8px;font-size:18px;">Kaydet</div>
+          <p class="sub" style="margin-top:8px;">Teklif PDF olarak indirilebilir.</p>
         </div>
         <div class="sideBody">
           <div class="mutedLine" style="margin-top:0;">
@@ -895,7 +907,6 @@
         <strong>Showroom Aracı</strong> <span style="color:rgba(255,255,255,.35)">|</span> iPad uyumlu moodboard teklif
       </div>
       <div class="stickyBtns">
-        <button class="btn" id="crmBtn" type="button">CRM’ye Gönder</button>
         <button class="btn primary" id="saveBtn" type="button">Teklifi Kaydet</button>
       </div>
     </div>
@@ -1762,19 +1773,39 @@
       const pc = $("productCards");
       pc.innerHTML = "";
       const kindLabels = {
-        Model: { chip: "Önerilen Model", kicker: "Model" },
-        Malzeme: { chip: "Malzeme / Özellik", kicker: "Malzeme" },
-        Aksesuar: { chip: "Olmazsa Olmaz Aksesuar", kicker: "Aksesuar" }
+        Model: { kicker: "MODEL" },
+        Malzeme: { kicker: "MALZEME" },
+        Aksesuar: { kicker: "AKSESUAR" }
+      };
+      const buildPlaceholderSvg = (label)=>{
+        const safeLabel = String(label || "").toUpperCase();
+        const svg = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+            <defs>
+              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1b222c"/>
+                <stop offset="100%" stop-color="#0f141b"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="450" fill="url(#bg)"/>
+            <rect x="36" y="36" width="728" height="378" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+            <text x="400" y="230" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="Arial, sans-serif" font-size="36" letter-spacing="6">${safeLabel}</text>
+          </svg>
+        `.trim();
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
       };
 
       db.products.forEach(p=>{
-        const labels = kindLabels[p.kind] || { chip: p.kind, kicker: p.kind };
+        const labels = kindLabels[p.kind] || { kicker: p.kind };
+        const imageSrc = p.image || buildPlaceholderSvg(labels.kicker);
         const el = document.createElement("div");
         el.className = "pcard";
         el.innerHTML = `
           <div class="pcHead">
-            <div class="pcChip">${labels.chip}</div>
             <div class="kicker" style="letter-spacing:.18em;">${labels.kicker}</div>
+          </div>
+          <div class="pcMedia">
+            <img src="${imageSrc}" alt="${labels.kicker} görseli" loading="lazy"/>
           </div>
           <div class="pcBody">
             <p class="t">${p.title}</p>
@@ -1832,16 +1863,6 @@
         toast("Teklif kaydedildi ve PDF olarak hazırlandı.");
       };
 
-      $("crmBtn").onclick = async ()=>{
-        const p = buildProposal();
-        const txt = safeJSON(p);
-        try{
-          await navigator.clipboard.writeText(txt);
-          toast("CRM için JSON kopyalandı.");
-        }catch(e){
-          window.prompt("Kopyala (Ctrl/Cmd + C):", txt);
-        }
-      };
     }
 
     function buildArchitectNote(payload){
