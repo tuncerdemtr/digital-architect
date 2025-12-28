@@ -485,6 +485,13 @@
       color: rgba(255,255,255,.72);
       max-width: 78ch;
     }
+    .resultProfile{
+      margin:0;
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255,255,255,.68);
+      max-width: 78ch;
+    }
 
     .moodGrid{
       display:grid;
@@ -765,9 +772,9 @@
           </div>
 
           <div class="mutedLine" id="winnerPreviewLine">
-            Winner preview: <b id="winnerPreview">-</b>
+            Ön İzleme: <b id="winnerPreview">-</b>
             <span style="color:rgba(255,255,255,.35)"> | </span>
-            Tie-break: Bütçe <span id="tbBudget">yok</span>, Stil <span id="tbStyle">yok</span>
+            Eşitlik Bozma: Bütçe <span id="tbBudget">yok</span>, Stil <span id="tbStyle">yok</span>
           </div>
         </div>
       </div>
@@ -810,9 +817,10 @@
         <div class="resultHero" id="resultHero">
           <div class="resultShade"></div>
           <div class="resultOverlay">
-            <div class="chip" style="align-self:flex-start;">Persona</div>
+            <div class="chip" style="align-self:flex-start;">Persona Profili</div>
             <h2 class="resultTitle" id="rTitle">-</h2>
             <p class="resultHeadline" id="rHeadline">-</p>
+            <p class="resultProfile" id="rProfileSummary">-</p>
             <div class="chips" id="rChips"></div>
           </div>
         </div>
@@ -844,7 +852,7 @@
             </p>
 
             <div class="note">
-              <h3 style="margin:0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);">Tie-break</h3>
+              <h3 style="margin:0;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);">Eşitlik Bozma</h3>
               <p id="rTieBreak" style="margin-top:10px;">-</p>
             </div>
 
@@ -860,7 +868,7 @@
         <div class="sideHeader">
           <div class="kicker">Teklif</div>
           <div class="h1" style="margin-top:8px;font-size:18px;">Kaydet / CRM</div>
-          <p class="sub" style="margin-top:8px;">Teklif JSON olarak indirilebilir. CRM butonu JSON’u kopyalar.</p>
+          <p class="sub" style="margin-top:8px;">Teklif PDF olarak indirilebilir. CRM butonu JSON’u kopyalar.</p>
         </div>
         <div class="sideBody">
           <div class="mutedLine" style="margin-top:0;">
@@ -884,7 +892,7 @@
   <div class="sticky hidden" id="sticky">
     <div class="stickyInner">
       <div class="stickyLeft">
-        <strong>Showroom Tool</strong> <span style="color:rgba(255,255,255,.35)">|</span> iPad uyumlu moodboard teklif
+        <strong>Showroom Aracı</strong> <span style="color:rgba(255,255,255,.35)">|</span> iPad uyumlu moodboard teklif
       </div>
       <div class="stickyBtns">
         <button class="btn" id="crmBtn" type="button">CRM’ye Gönder</button>
@@ -903,11 +911,12 @@
       tech: {
         titleTR: "Teknoloji Tutkunu Vizyoner",
         headline: "Mutfak Değil, Bir Teknoloji Üssü.",
+        profileSummary: "Sizin için net çizgiler, hız ve teknoloji her şeyden önce geliyor. Karmaşadan uzak, maskülen ve \"akıllı\" bir yaşam alanı arıyorsunuz.",
         heroImage: "", // optional local path e.g. "hero/inova.jpg"
         products: [
-          { kind:"Model", title:"INOVA (Handle-less)", subtitle:"Kulpsuz, net çizgiler, modern dil", meta:"" },
-          { kind:"Material", title:"Mat Lake", subtitle:"Koyu Taupe / Antrasit", meta:"Low-glare, güçlü kontrast" },
-          { kind:"Accessory", title:"Ring Prizli Aydınlatma Ünitesi", subtitle:"USB Charging", meta:"Teknoloji hissi + pratiklik" },
+          { kind:"Model", title:"INOVA (Kulpsuz)", subtitle:"Kulpsuz, net çizgiler, modern dil", meta:"" },
+          { kind:"Malzeme", title:"Mat Lake", subtitle:"Koyu Taupe / Antrasit", meta:"Düşük parlama, güçlü kontrast" },
+          { kind:"Aksesuar", title:"Ring Prizli Aydınlatma Ünitesi", subtitle:"USB şarjlı", meta:"Teknoloji hissi + pratiklik" },
         ],
         features: [
           "Kulpsuz çizgi ve net geometriler",
@@ -920,11 +929,12 @@
       luxury: {
         titleTR: "Klasik Lüks Sever",
         headline: "Zamanın Ötesinde Bir Prestij.",
+        profileSummary: "Geçici trendler değil, kalıcı değerler peşindesiniz. Detaylardaki işçilik ve malzemenin ağırlığı sizin için kalite göstergesi.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"TOSCANA (Framed doors)", subtitle:"Çerçeveli kapak, prestij hissi", meta:"" },
-          { kind:"Material", title:"Parlak Lake", subtitle:"Porselen Mavi", meta:"Güçlü yüzey kalitesi" },
-          { kind:"Accessory", title:"Tezgah Üstü Büfe Dolaplar", subtitle:"Glass cabinets", meta:"Sergileme ve servis" },
+          { kind:"Model", title:"TOSCANA (Çerçeveli Kapak)", subtitle:"Çerçeveli kapak, prestij hissi", meta:"" },
+          { kind:"Malzeme", title:"Parlak Lake", subtitle:"Porselen Mavi", meta:"Güçlü yüzey kalitesi" },
+          { kind:"Aksesuar", title:"Tezgah Üstü Büfe Dolaplar", subtitle:"Cam vitrinler", meta:"Sergileme ve servis" },
         ],
         features: [
           "Klasik oranlar, çerçeveli kapak dili",
@@ -937,11 +947,12 @@
       comfort: {
         titleTR: "Konfor Odaklı Aile",
         headline: "Hayatın Hızına Yetişen Dayanıklı Mutfak.",
+        profileSummary: "Evin kalbi burası. Çocuklar, evcil dostlar ve yoğun trafik... Sizin mutfağınızın her şeye dayanıklı olması ve her zaman temiz kalması gerekiyor.",
         heroImage: "",
         products: [
           { kind:"Model", title:"SIENA veya NORDA", subtitle:"Aile rutini için dayanım", meta:"" },
-          { kind:"Material", title:"Akrilik PET", subtitle:"Anti-fingerprint, Scratch-resistant", meta:"Hijyen + bakım kolaylığı" },
-          { kind:"Accessory", title:"Boy Kiler Mekanizması (Pantry) & Pet Module", subtitle:"Düzen + evcil senaryosu", meta:"Günlük akış kolaylaşır" },
+          { kind:"Malzeme", title:"Akrilik PET", subtitle:"Parmak izi bırakmayan, çizik dayanımlı", meta:"Hijyen + bakım kolaylığı" },
+          { kind:"Aksesuar", title:"Boy Kiler Mekanizması (Pantry) ve PET Modül", subtitle:"Düzen + evcil senaryosu", meta:"Günlük akış kolaylaşır" },
         ],
         features: [
           "Kolay temizlenen, iz tutmayan yüzey",
@@ -954,11 +965,12 @@
       smart: {
         titleTR: "Akıllı Yatırımcı (Micro-Living)",
         headline: "Akıllı Metrekareler, Yüksek Değer.",
+        profileSummary: "Pragmatiksiniz. Alan kısıtlı ama beklentiniz yüksek. Hedefiniz; bütçeyi yormadan, uzun ömürlü ve mekanı verimli kullanan bir çözüm.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"PRIME (Budget-friendly)", subtitle:"Net bütçe kontrolü", meta:"" },
-          { kind:"Material", title:"Melamin", subtitle:"Sıcak Beyaz / Bej", meta:"Dayanım + maliyet dengesi" },
-          { kind:"Accessory", title:"Açılır Masa Mekanizması", subtitle:"Space saving", meta:"Küçük alanda büyük etki" },
+          { kind:"Model", title:"PRIME (Bütçe Dostu)", subtitle:"Net bütçe kontrolü", meta:"" },
+          { kind:"Malzeme", title:"Melamin", subtitle:"Sıcak Beyaz / Bej", meta:"Dayanım + maliyet dengesi" },
+          { kind:"Aksesuar", title:"Açılır Masa Mekanizması", subtitle:"Yer kazandıran", meta:"Küçük alanda büyük etki" },
         ],
         features: [
           "Metrekare verimliliği ve hızlı kurulum",
@@ -971,15 +983,16 @@
       gourmet: {
         titleTR: "Gurme Şef",
         headline: "Evinizin Profesyonel Lezzet İstasyonu.",
+        profileSummary: "Yemek yapmak sizin için bir sanat. Tezgahınız atölyeniz. İhtiyacınız olan şey estetikten öte, kusursuz bir operasyonel akış.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"INOVA (High capacity)", subtitle:"Güçlü depolama, istasyon mantığı", meta:"" },
-          { kind:"Material", title:"Soft Lak veya Metal Look", subtitle:"Grafit", meta:"Profesyonel, kontrollü görünüm" },
-          { kind:"Accessory", title:"Ergonomik Bulaşık Makinesi Ünitesi & Drawer Organizers", subtitle:"Akış ve düzen", meta:"Daha az eğilme, daha hızlı servis" },
+          { kind:"Model", title:"INOVA (Yüksek Kapasite)", subtitle:"Güçlü depolama, istasyon mantığı", meta:"" },
+          { kind:"Malzeme", title:"Soft Lak veya Metal Görünüm", subtitle:"Grafit", meta:"Profesyonel, kontrollü görünüm" },
+          { kind:"Aksesuar", title:"Ergonomik Bulaşık Makinesi Ünitesi ve Çekmece Düzenleyiciler", subtitle:"Akış ve düzen", meta:"Daha az eğilme, daha hızlı servis" },
         ],
         features: [
           "Pişirme hattı ve istasyon düzeni",
-          "Organizer ile dağınıklığı bitiren kurgu",
+          "Düzenleyicilerle dağınıklığı bitiren kurgu",
           "Ergonomi: daha az eğilme, daha hızlı akış",
           "Yüksek kapasite depolama ve erişim",
         ],
@@ -988,16 +1001,17 @@
       eco: {
         titleTR: "Doğal Yaşam Savunucusu",
         headline: "Doğanın Huzuru Mutfağınızda.",
+        profileSummary: "Sürdürülebilirlik bir tercih değil, yaşam biçiminiz. Mutfağınız nefes almalı, doğal malzemelerle ruhunuzu dinlendirmeli.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"NORDA (Scandinavian)", subtitle:"Sakin, doğal çizgi", meta:"" },
-          { kind:"Material", title:"Natural Wood Veneer & Recycled Mat PET", subtitle:"Sürdürülebilir yüzey dili", meta:"Doğal doku + sorumlu seçim" },
-          { kind:"Accessory", title:"Micro Garden Ünitesi", subtitle:"Grow herbs", meta:"Yaşayan mutfak hissi" },
+          { kind:"Model", title:"NORDA (İskandinav)", subtitle:"Sakin, doğal çizgi", meta:"" },
+          { kind:"Malzeme", title:"Doğal Ahşap Kaplama ve Geri Dönüşümlü Mat PET", subtitle:"Sürdürülebilir yüzey dili", meta:"Doğal doku + sorumlu seçim" },
+          { kind:"Aksesuar", title:"Mini Bahçe Ünitesi", subtitle:"Taze ot yetiştirme", meta:"Yaşayan mutfak hissi" },
         ],
         features: [
           "Doğal doku ve yumuşak ton dengesi",
           "Sürdürülebilir malzeme vurgusu",
-          "Herb garden ile yaşayan mutfak hissi",
+          "Mini bahçe ile yaşayan mutfak hissi",
           "Sade, dingin, zamansız görünüm",
         ],
         salesTip: "Sürdürülebilirlik mesajını ürün davranışıyla bağla: bakım, ömür, günlük kullanım."
@@ -1005,11 +1019,12 @@
       social: {
         titleTR: "Sosyal Ev Sahibi",
         headline: "Sadece Yemek Değil, Sohbet Pişirilen Yer.",
+        profileSummary: "Mutfak sizin sahneniz. Dostlarınızla kadeh kaldırdığınız, yemek yaparken sohbetin kesilmediği, salonla bütünleşen bir alan hayal ediyorsunuz.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"INOVA (Island Layout)", subtitle:"Ada etrafında sosyal akış", meta:"" },
-          { kind:"Material", title:"Contrast Colors", subtitle:"Walnut & Cashmere", meta:"Kontrastla sahne etkisi" },
-          { kind:"Accessory", title:"Wine/Glass Modules & Metal Open Shelves", subtitle:"Sergileme + servis", meta:"Misafir senaryosu" },
+          { kind:"Model", title:"INOVA (Ada Yerleşimi)", subtitle:"Ada etrafında sosyal akış", meta:"" },
+          { kind:"Malzeme", title:"Kontrast Renkler", subtitle:"Ceviz & Kaşmir", meta:"Kontrastla sahne etkisi" },
+          { kind:"Aksesuar", title:"Şarap/Kadeh Modülleri ve Metal Açık Raflar", subtitle:"Sergileme + servis", meta:"Misafir senaryosu" },
         ],
         features: [
           "Ada ile sosyal akış ve servis hattı",
@@ -1020,13 +1035,14 @@
         salesTip: "Müşteriye bir akşam yemeği senaryosu çiz: servis, sohbet, hazırlık, toparlama."
       },
       coastal: {
-        titleTR: "Dinginlik Arayan (Yazlık)",
+        titleTR: "Dinginlik Arayan (Yazlık Ruhu)",
         headline: "Her Gün Tatil Sabahına Uyanmak Gibi.",
+        profileSummary: "Şehrin griliğinden kaçış arıyorsunuz. Mutfağınız size bir sahil evinin ferahlığını, denizin mavisini ve Akdeniz'in sakinliğini vermeli.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"FRESCA (Vertical grooves)", subtitle:"Dikey oluklarla hafif ritim", meta:"" },
-          { kind:"Material", title:"Mat PET", subtitle:"Ocean Blue / Sage Green", meta:"Ferahlık ve yumuşak ton" },
-          { kind:"Accessory", title:"Under-window Sink Layout & Wicker Baskets", subtitle:"Ritüel ve düzen", meta:"Pencere önü hissi" },
+          { kind:"Model", title:"FRESCA (Dikey Oluklar)", subtitle:"Dikey oluklarla hafif ritim", meta:"" },
+          { kind:"Malzeme", title:"Mat PET", subtitle:"Okyanus Mavisi / Adaçayı Yeşili", meta:"Ferahlık ve yumuşak ton" },
+          { kind:"Aksesuar", title:"Pencere Önü Evye Yerleşimi ve Hasır Sepetler", subtitle:"Ritüel ve düzen", meta:"Pencere önü hissi" },
         ],
         features: [
           "Ferahlık veren ton paleti",
@@ -1039,11 +1055,12 @@
       quick: {
         titleTR: "Hız ve Pratiklik Odaklı",
         headline: "Beklemeden Yeni Mutfağınıza Kavuşun.",
+        profileSummary: "Kararınızı verdiniz ve sonuç istiyorsunuz. Tadilat süreci gözünüzde büyümesin; sizin için hız, pratiklik ve hemen kullanım önemli.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"PRIME (Stock)", subtitle:"Hazır sistem, düşük risk", meta:"" },
-          { kind:"Material", title:"Laminate Countertop", subtitle:"3-week delivery", meta:"Hız odaklı paket" },
-          { kind:"Accessory", title:"Rail Accessory Sets", subtitle:"No drilling", meta:"Hızlı düzen, hızlı kullanım" },
+          { kind:"Model", title:"PRIME (Stok)", subtitle:"Hazır sistem, düşük risk", meta:"" },
+          { kind:"Malzeme", title:"Laminat Tezgah", subtitle:"3 haftada teslimat", meta:"Hız odaklı paket" },
+          { kind:"Aksesuar", title:"Raylı Aksesuar Setleri", subtitle:"Delmesiz", meta:"Hızlı düzen, hızlı kullanım" },
         ],
         features: [
           "Stok sistem ile hız",
@@ -1056,17 +1073,18 @@
       nostalgic: {
         titleTR: "Nostaljik Romantik",
         headline: "Geçmişin Sıcaklığı, Bugünün Konforu.",
+        profileSummary: "Modernizmin çizgileri size göre değil. Siz \"yaşanmışlık\" hissi veren, duygusal bağ kurabileceğiniz bir yer istiyorsunuz.",
         heroImage: "",
         products: [
-          { kind:"Model", title:"VEGA (Country/Vintage)", subtitle:"Duygusal bağ kuran çizgi", meta:"" },
-          { kind:"Material", title:"Polymeric", subtitle:"Magnolia / Baltic Blue", meta:"Sıcak ve davetkar tonlar" },
-          { kind:"Accessory", title:"Rustic Brass Handles", subtitle:"Rustik pirinç kulplar", meta:"Karakteri kulp taşır" },
+          { kind:"Model", title:"VEGA (Kır Evi / Nostaljik)", subtitle:"Duygusal bağ kuran çizgi", meta:"" },
+          { kind:"Malzeme", title:"Polimerik", subtitle:"Manolya / Baltık Mavisi", meta:"Sıcak ve davetkar tonlar" },
+          { kind:"Aksesuar", title:"Rustik Pirinç Kulplar", subtitle:"Rustik pirinç kulplar", meta:"Karakteri kulp taşır" },
         ],
         features: [
-          "Country oranlar ve sıcak detay dili",
+          "Kır evi oranları ve sıcak detay dili",
           "Tonlarla duygu ve ev hissi",
           "Pirinç kulplarla güçlü karakter",
-          "Vintage çizgide modern konfor",
+          "Nostaljik çizgide modern konfor",
         ],
         salesTip: "Müşterinin anılarına bağlan: aile masası, pazar kahvaltısı, koku ve doku."
       }
@@ -1113,7 +1131,7 @@
       {
         id:"q4", label:"Q4", type:"multi",
         title:"Hane halkı hangilerine uyuyor?",
-        subtitle:"Çoklu seçim. Çocuk + Evcil hayvan seçilirse High Durability Alert tetikler.",
+        subtitle:"Çoklu seçim. Çocuk + Evcil hayvan seçilirse Yüksek Dayanım Uyarısı tetikler.",
         options:[
           { id:"singleCouple", label:"Yalnız / Çift", desc:"Minimal düzen, teknolojiye açık.", icon:"users", points:{ tech:10, smart:5 } },
           { id:"children", label:"Çocuklar", desc:"Dayanım, hijyen, güvenlik.", icon:"users", points:{ comfort:15 } },
@@ -1147,11 +1165,11 @@
       {
         id:"q7", label:"Q7", type:"single",
         title:"Tasarım dili hangisi?",
-        subtitle:"Tie-break için kritik (2. öncelik).",
+        subtitle:"Eşitlik bozma için kritik (2. öncelik).",
         options:[
           { id:"modern", label:"Modern & Minimal", desc:"Kulpsuz, net çizgiler.", icon:"style", points:{ tech:20, gourmet:5 } },
           { id:"classic", label:"Klasik & Gösterişli", desc:"Çerçeveli kapak, prestij.", icon:"style", points:{ luxury:20, social:5 } },
-          { id:"country", label:"Country & Doğal", desc:"Ahşap dokular, sıcaklık.", icon:"style", points:{ eco:15, nostalgic:15, coastal:10 } },
+          { id:"country", label:"Kır Evi & Doğal", desc:"Ahşap dokular, sıcaklık.", icon:"style", points:{ eco:15, nostalgic:15, coastal:10 } },
           { id:"industrial", label:"Endüstriyel", desc:"Kontrast, metal hissi.", icon:"style", points:{ tech:10, social:10 } }
         ]
       },
@@ -1210,7 +1228,7 @@
       {
         id:"q13", label:"Q13", type:"single",
         title:"Bütçe yaklaşımı nasıl?",
-        subtitle:"Tie-break için kritik (1. öncelik).",
+        subtitle:"Eşitlik bozma için kritik (1. öncelik).",
         options:[
           { id:"flexible", label:"Esnek / Prestij", desc:"Premium kararlar.", icon:"wallet", points:{ luxury:20, tech:5 } },
           { id:"pp", label:"Fiyat / Performans", desc:"Dengeli seçim.", icon:"wallet", points:{ comfort:10, gourmet:5 } },
@@ -1309,22 +1327,144 @@
       return JSON.stringify(obj, null, 2);
     }
 
-    function downloadJSON(payload){
-      const blob = new Blob([safeJSON(payload)], { type:"application/json;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
+    function buildFileBase(payload){
       const base = (payload.customer?.name || "musteri")
         .toLowerCase()
         .replaceAll("ı","i").replaceAll("ğ","g").replaceAll("ü","u")
         .replaceAll("ş","s").replaceAll("ö","o").replaceAll("ç","c")
         .replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")
         .slice(0,42) || "musteri";
-      a.href = url;
-      a.download = `intema-proposal-${base}-${new Date().toISOString().slice(0,10)}.json`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
+      return `intema-teklif-${base}-${new Date().toISOString().slice(0,10)}`;
+    }
+
+    function formatDateTR(iso){
+      try{
+        return new Date(iso).toLocaleString("tr-TR");
+      }catch(e){
+        return iso || "-";
+      }
+    }
+
+    function buildPDFHtml(payload){
+      const db = PERSONA_DB[payload.persona.key];
+      const productsHtml = db.products.map(p=>`
+        <div class="card">
+          <div class="label">${p.kind}</div>
+          <div class="title">${p.title}</div>
+          ${p.subtitle ? `<div class="subtitle">${p.subtitle}</div>` : ""}
+          ${p.meta ? `<div class="meta">${p.meta}</div>` : ""}
+        </div>
+      `).join("");
+
+      const featuresHtml = (db.features || []).map(x=>`<li>${x}</li>`).join("");
+      const selectionsHtml = (payload.selectionsReadable || []).map(x=>`<li>${x}</li>`).join("");
+      const baseTitle = buildFileBase(payload);
+      const customer = payload.customer || {};
+      const tieBreak = payload.persona.tieBreak || {};
+
+      return `<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>${baseTitle}</title>
+  <style>
+    :root{ color-scheme: light; }
+    *{ box-sizing:border-box; }
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      margin: 32px;
+      color: #111827;
+      background: #ffffff;
+    }
+    h1{ font-size: 24px; margin: 0 0 8px; }
+    h2{ font-size: 16px; margin: 24px 0 10px; letter-spacing: .08em; text-transform: uppercase; color:#6b7280; }
+    .metaLine{ font-size: 12px; color:#6b7280; margin-bottom: 18px; }
+    .card{
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .label{ font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color:#6b7280; }
+    .title{ font-weight: 700; margin-top: 6px; }
+    .subtitle{ margin-top: 6px; color:#374151; font-size: 13px; }
+    .meta{ margin-top: 6px; color:#6b7280; font-size: 12px; }
+    .sectionText{ color:#374151; font-size: 14px; line-height:1.6; }
+    ul{ margin: 8px 0 0 18px; color:#374151; font-size: 13px; line-height:1.6; }
+    .grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .box{ border:1px solid #e5e7eb; border-radius: 12px; padding: 12px; }
+    @media print{
+      body{ margin: 12mm; }
+      .grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>İntema Teklif Özeti</h1>
+  <div class="metaLine">Oluşturma Tarihi: ${formatDateTR(payload.createdAtISO)}</div>
+
+  <h2>Persona</h2>
+  <div class="sectionText">
+    <strong>${db.titleTR}</strong><br/>
+    ${db.headline}<br/>
+    ${db.profileSummary}
+  </div>
+
+  <h2>Önerilen Ürünler</h2>
+  ${productsHtml}
+
+  <div class="grid">
+    <div class="box">
+      <h2>Kritik Özellikler</h2>
+      <ul>${featuresHtml}</ul>
+      <h2 style="margin-top:16px;">Mimar Notu</h2>
+      <div class="sectionText">${buildArchitectNote(payload)}</div>
+    </div>
+    <div class="box">
+      <h2>Teklif Bilgisi</h2>
+      <div class="sectionText">${payload.persona.salesTip}</div>
+      <h2 style="margin-top:16px;">Eşitlik Bozma</h2>
+      <div class="sectionText">Bütçe: ${tieBreak.usedBudget ? "Kullanıldı" : "Kullanılmadı"} | Stil: ${tieBreak.usedStyle ? "Kullanıldı" : "Kullanılmadı"}</div>
+      <h2 style="margin-top:16px;">Seçim Özeti</h2>
+      <ul>${selectionsHtml}</ul>
+    </div>
+  </div>
+
+  <h2>Müşteri Bilgileri</h2>
+  <div class="sectionText">
+    Ad Soyad: ${customer.name || "-"}<br/>
+    Telefon: ${customer.phone || "-"}<br/>
+    Şehir / Bölge: ${customer.city || "-"}<br/>
+    Not: ${customer.note || "-"}
+  </div>
+</body>
+</html>`;
+    }
+
+    function downloadPDF(payload){
+      const win = window.open("", "_blank");
+      if(!win){
+        toast("PDF oluşturmak için açılır pencere izinli olmalı.");
+        return;
+      }
+      win.document.open();
+      win.document.write(buildPDFHtml(payload));
+      win.document.close();
+
+      let printed = false;
+      const triggerPrint = ()=>{
+        if(printed) return;
+        printed = true;
+        win.focus();
+        win.print();
+      };
+
+      win.onload = ()=>{
+        triggerPrint();
+        win.onafterprint = ()=>win.close();
+      };
+
+      setTimeout(triggerPrint, 700);
     }
 
     function saveLocal(payload){
@@ -1471,7 +1611,7 @@
       if(triggers.highDurabilityAlert){
         const c = document.createElement("div");
         c.className = "chip warn";
-        c.textContent = "High Durability Alert";
+        c.textContent = "Yüksek Dayanım Uyarısı";
         targetEl.appendChild(c);
       }
       if(triggers.petMaterialRecommendation){
@@ -1585,6 +1725,7 @@
           key: calc.winner,
           titleTR: db.titleTR,
           headline: db.headline,
+          profileSummary: db.profileSummary,
           scores: calc.scores,
           triggers: calc.triggers,
           tieBreak: calc.tieBreak,
@@ -1611,6 +1752,7 @@
 
       $("rTitle").textContent = db.titleTR;
       $("rHeadline").textContent = db.headline;
+      $("rProfileSummary").textContent = db.profileSummary || "-";
 
       const chipsEl = $("rChips");
       chipsEl.innerHTML = "";
@@ -1619,13 +1761,20 @@
       // Product cards
       const pc = $("productCards");
       pc.innerHTML = "";
+      const kindLabels = {
+        Model: { chip: "Önerilen Model", kicker: "Model" },
+        Malzeme: { chip: "Malzeme / Özellik", kicker: "Malzeme" },
+        Aksesuar: { chip: "Olmazsa Olmaz Aksesuar", kicker: "Aksesuar" }
+      };
+
       db.products.forEach(p=>{
+        const labels = kindLabels[p.kind] || { chip: p.kind, kicker: p.kind };
         const el = document.createElement("div");
         el.className = "pcard";
         el.innerHTML = `
           <div class="pcHead">
-            <div class="pcChip">${p.kind === "Model" ? "Önerilen Model" : (p.kind === "Material" ? "Malzeme / Özellik" : "Must-have Aksesuar")}</div>
-            <div class="kicker" style="letter-spacing:.18em;">${p.kind}</div>
+            <div class="pcChip">${labels.chip}</div>
+            <div class="kicker" style="letter-spacing:.18em;">${labels.kicker}</div>
           </div>
           <div class="pcBody">
             <p class="t">${p.title}</p>
@@ -1679,8 +1828,8 @@
       $("saveBtn").onclick = ()=>{
         const p = buildProposal();
         saveLocal(p);
-        downloadJSON(p);
-        toast("Teklif kaydedildi ve indirildi.");
+        downloadPDF(p);
+        toast("Teklif kaydedildi ve PDF olarak hazırlandı.");
       };
 
       $("crmBtn").onclick = async ()=>{
@@ -1700,7 +1849,7 @@
       const key = payload.persona.key;
 
       if(t.highDurabilityAlert){
-        return "Çocuk + evcil hayvan senaryosu var. Darbe, çizik ve leke toleransı yüksek yüzeylere git. Akrilik PET ve bakım kolaylığını satışta öne çıkar. Pantry ile düzeni kilitle.";
+        return "Çocuk + evcil hayvan senaryosu var. Darbe, çizik ve leke toleransı yüksek yüzeylere git. Akrilik PET ve bakım kolaylığını satışta öne çıkar. Boy kiler ile düzeni kilitle.";
       }
 
       if(t.petMaterialRecommendation){
@@ -1724,7 +1873,7 @@
       }
 
       if(key === "eco"){
-        return "Doğallık ve sürdürülebilirliği aynı cümlede bağla: doku, ömür, bakım. Micro garden ile yaşayan mutfak hissini güçlendir.";
+        return "Doğallık ve sürdürülebilirliği aynı cümlede bağla: doku, ömür, bakım. Mini bahçe ile yaşayan mutfak hissini güçlendir.";
       }
 
       if(key === "coastal"){
@@ -1732,7 +1881,7 @@
       }
 
       if(key === "nostalgic"){
-        return "Duygusal bağ üzerinden ilerle. Tonlar ve kulp detaylarıyla karakteri belirginleştir. Modern konforu vintage dilin içine göm.";
+        return "Duygusal bağ üzerinden ilerle. Tonlar ve kulp detaylarıyla karakteri belirginleştir. Modern konforu nostaljik dilin içine göm.";
       }
 
       // tech or fallback
