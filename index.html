@@ -1088,157 +1088,127 @@
     // Full set Q1-Q13 (Q8-Q12 included)
     // Tie-break: Q13 then Q7
     // -----------------------------
-    const QUESTIONS = [
-      {
-        id:"q1", label:"Q1", type:"single",
-        title:"Proje niteliği nedir?",
-        subtitle:"Müşterinin ana bağlamı: yeni ev mi, yatırım mı, yazlık mı?",
-        options:[
-          { id:"renovation", label:"Kendi Evim / Tadilat", desc:"Mevcut evi yenileme.", icon:"home", points:{} },
-          { id:"newHouse", label:"Yeni Ev / Sıfır", desc:"Yeni taşınma veya yeni inşaat.", icon:"home", points:{ tech:5, luxury:5 } },
-          { id:"investment", label:"Yatırım / Stüdyo", desc:"Kiralık veya satış odaklı.", icon:"home", points:{ smart:20 } },
-          { id:"summer", label:"Yazlık / İkinci Ev", desc:"Sezonluk veya ikinci yaşam.", icon:"home", points:{ coastal:20 } }
-        ]
-      },
-      {
-        id:"q2", label:"Q2", type:"single",
-        title:"Zaman kısıtı var mı?",
-        subtitle:"Teslimat ve karar hızını ölçer.",
-        options:[
-          { id:"urgent", label:"Acil / Hemen", desc:"Hızlı karar, hızlı uygulama.", icon:"clock", points:{ quick:20, smart:10 } },
-          { id:"standard", label:"Standart Süre", desc:"Normal takvim, dengeli süreç.", icon:"clock", points:{} },
-          { id:"perfectionist", label:"Mükemmeliyetçi (Zaman bol)", desc:"Detay odaklı, kusursuzluk arar.", icon:"clock", points:{ luxury:10, nostalgic:5 } }
-        ]
-      },
-      {
-        id:"q3", label:"Q3", type:"single",
-        title:"Alan durumu nasıl?",
-        subtitle:"Metrekare ve plan, öneri tipini değiştirir.",
-        options:[
-          { id:"small", label:"Dar / Küçük", desc:"Verimlilik ve kompakt çözümler.", icon:"area", points:{ smart:10, quick:5 } },
-          { id:"standard", label:"Standart", desc:"Orta ölçekli ve dengeli plan.", icon:"area", points:{} },
-          { id:"large", label:"Geniş / Ada Müsait", desc:"Sosyal akış ve güçlü pişirme hattı.", icon:"area", points:{ social:15, gourmet:10 } },
-          { id:"freedom", label:"Mimari Özgürlük", desc:"Özel plan ve esnek yerleşim.", icon:"area", points:{ tech:10 } }
-        ]
-      },
-      {
-        id:"q4", label:"Q4", type:"multi",
-        title:"Hane halkı hangilerine uyuyor?",
-        subtitle:"Çoklu seçim. Çocuk + Evcil hayvan seçilirse Yüksek Dayanım Uyarısı tetikler.",
-        options:[
-          { id:"singleCouple", label:"Yalnız / Çift", desc:"Minimal düzen, teknolojiye açık.", icon:"users", points:{ tech:10, smart:5 } },
-          { id:"children", label:"Çocuklar", desc:"Dayanım, hijyen, güvenlik.", icon:"users", points:{ comfort:15 } },
-          { id:"extended", label:"Geniş Aile / Yaşlı", desc:"Konfor ve sosyal kullanım.", icon:"users", points:{ comfort:10, social:5 } },
-          { id:"pets", label:"Evcil Hayvan", desc:"Dayanım, hijyen, sürdürülebilirlik.", icon:"users", points:{ comfort:5, eco:10 } }
-        ]
-      },
-      {
-        id:"q5", label:"Q5", type:"single",
-        title:"Ana motivasyon ne?",
-        subtitle:"Mutfak, müşterinin hayatında neyi temsil ediyor?",
-        options:[
-          { id:"showcase", label:"Vitrin (Sosyal)", desc:"Misafir, sunum, eğlence.", icon:"spark", points:{ social:20, tech:10 } },
-          { id:"operation", label:"Operasyon (Yemek)", desc:"Fonksiyon, istasyon mantığı.", icon:"spark", points:{ gourmet:20 } },
-          { id:"sanctuary", label:"Sığınak (Huzur)", desc:"Sakinlik, doğal his.", icon:"spark", points:{ coastal:15, eco:10 } },
-          { id:"station", label:"İstasyon (Pratik)", desc:"Hızlı akış, pratik çözümler.", icon:"spark", points:{ quick:10, smart:10 } },
-          { id:"heart", label:"Kalp (Aile)", desc:"Rutinler, dayanım, sıcaklık.", icon:"spark", points:{ comfort:15, nostalgic:10 } }
-        ]
-      },
-      {
-        id:"q6", label:"Q6", type:"single",
-        title:"En büyük acı noktası ne?",
-        subtitle:"Problemi seç, sistem çözümü bağlasın.",
-        options:[
-          { id:"clutter", label:"Dağınıklık", desc:"Organizer ve depolama ihtiyacı.", icon:"broom", points:{ gourmet:10, comfort:5 } },
-          { id:"cleaning", label:"Temizlik / Leke", desc:"Kolay silinebilir, dayanıklı yüzeyler.", icon:"broom", points:{ comfort:20 }, trigger:"petMaterial" },
-          { id:"outdated", label:"Demode Görünüm", desc:"Modernleşme isteği.", icon:"broom", points:{ tech:10, luxury:5 } },
-          { id:"dark", label:"Karanlık / Basık", desc:"Ferahlık ve ışık ihtiyacı.", icon:"broom", points:{ coastal:10 } }
-        ]
-      },
-      {
-        id:"q7", label:"Q7", type:"single",
-        title:"Tasarım dili hangisi?",
-        subtitle:"Eşitlik bozma için kritik (2. öncelik).",
-        options:[
-          { id:"modern", label:"Modern & Minimal", desc:"Kulpsuz, net çizgiler.", icon:"style", points:{ tech:20, gourmet:5 } },
-          { id:"classic", label:"Klasik & Gösterişli", desc:"Çerçeveli kapak, prestij.", icon:"style", points:{ luxury:20, social:5 } },
-          { id:"country", label:"Kır Evi & Doğal", desc:"Ahşap dokular, sıcaklık.", icon:"style", points:{ eco:15, nostalgic:15, coastal:10 } },
-          { id:"industrial", label:"Endüstriyel", desc:"Kontrast, metal hissi.", icon:"style", points:{ tech:10, social:10 } }
-        ]
-      },
-
-      // Extended question set
-      {
-        id:"q8", label:"Q8", type:"single",
-        title:"Malzeme hissi hangisi?",
-        subtitle:"Yüzey ve dokunun karakterini seç.",
-        options:[
-          { id:"wood", label:"Doğal Ahşap", desc:"Doğal doku ve sıcaklık.", icon:"material", points:{ eco:20, nostalgic:10 } },
-          { id:"matsoft", label:"Mat / Soft", desc:"Yumuşak, sakin yüzey.", icon:"material", points:{ comfort:10, coastal:10 } },
-          { id:"gloss", label:"Parlak / Canlı", desc:"Gösterişli ve premium algı.", icon:"material", points:{ luxury:15, social:10 } },
-          { id:"dark", label:"Koyu / Maskülen", desc:"Kontrast ve modern güç.", icon:"material", points:{ tech:15, gourmet:5 } }
-        ]
-      },
-      {
-        id:"q9", label:"Q9", type:"single",
-        title:"Pişirme yaklaşımı nasıl?",
-        subtitle:"Kullanım yoğunluğu öneriyi değiştirir.",
-        options:[
-          { id:"standard", label:"Standart", desc:"Günlük düzen, dengeli kullanım.", icon:"cook", points:{ comfort:5 } },
-          { id:"gourmet", label:"Gurme Seviyesi", desc:"Sık pişirir, ekipman kullanır.", icon:"cook", points:{ gourmet:25 } },
-          { id:"practical", label:"Minimum / Pratik", desc:"Hız, basit rutinler.", icon:"cook", points:{ smart:10, quick:10 } }
-        ]
-      },
-      {
-        id:"q10", label:"Q10", type:"single",
-        title:"Depolamada öncelik ne?",
-        subtitle:"Düzen ve sergileme tercihleri.",
-        options:[
-          { id:"standard", label:"Standart", desc:"Temel depolama yeterli.", icon:"storage", points:{} },
-          { id:"pantry", label:"Kiler Sistemleri", desc:"Gizli düzen, hızlı erişim.", icon:"storage", points:{ comfort:10, gourmet:10 } },
-          { id:"vitrine", label:"Vitrin / Sergileme", desc:"Görsel etki ve sunum.", icon:"storage", points:{ social:15, luxury:10 } }
-        ]
-      },
-      {
-        id:"q11", label:"Q11", type:"single",
-        title:"Sürdürülebilirlik önemi ne kadar?",
-        subtitle:"Malzeme ve seçim önceliği.",
-        options:[
-          { id:"high", label:"Çok Önemli (Eco)", desc:"Sürdürülebilir seçim çok önemli.", icon:"leaf", points:{ eco:25 } },
-          { id:"normal", label:"Önemli ama...", desc:"Denge önemli.", icon:"leaf", points:{ eco:5 } },
-          { id:"low", label:"Öncelik Değil", desc:"Diğer kriterler öncelikli.", icon:"leaf", points:{} }
-        ]
-      },
-      {
-        id:"q12", label:"Q12", type:"single",
-        title:"Teknoloji yaklaşımı nasıl?",
-        subtitle:"Akıllı çözümler mi, geleneksel mi?",
-        options:[
-          { id:"hightech", label:"High-Tech Olsun", desc:"Entegre, akıllı aksesuarlar.", icon:"chip", points:{ tech:20 } },
-          { id:"traditional", label:"Geleneksel Olsun", desc:"Klasik kullanım, sıcak his.", icon:"chip", points:{ nostalgic:15, eco:5 } }
-        ]
-      },
-      {
-        id:"q13", label:"Q13", type:"single",
-        title:"Bütçe yaklaşımı nasıl?",
-        subtitle:"Eşitlik bozma için kritik (1. öncelik).",
-        options:[
-          { id:"flexible", label:"Esnek / Prestij", desc:"Premium kararlar.", icon:"wallet", points:{ luxury:20, tech:5 } },
-          { id:"pp", label:"Fiyat / Performans", desc:"Dengeli seçim.", icon:"wallet", points:{ comfort:10, gourmet:5 } },
-          { id:"economic", label:"Ekonomik", desc:"Net bütçe, verim.", icon:"wallet", points:{ smart:15, quick:5 } }
-        ]
-      },
-      {
-        id:"q14", label:"Q14", type:"single",
-        title:"Karar faktörü hangisi?",
-        subtitle:"Müşteriyi karar verdiren ana unsur.",
-        options:[
-          { id:"design", label:"Tasarım Heyecanı", desc:"Görsel etki ve heyecan.", icon:"spark", points:{ tech:5, luxury:5 } },
-          { id:"guarantee", label:"Güven / Garanti", desc:"Uzun ömür ve güvence.", icon:"spark", points:{ comfort:10, luxury:5 } },
-          { id:"speed", label:"Hız", desc:"Süreç ve teslimat hızı.", icon:"spark", points:{ quick:15 } },
-          { id:"cost", label:"Maliyet", desc:"Net bütçe ve verim.", icon:"spark", points:{ smart:10 } }
-        ]
-      }
+    // --- REVİZE EDİLMİŞ DENGELİ SORU HAVUZU (MAX PUAN ~100 EŞİTLENDİ) ---
+    const questions = [
+        {
+            id: 1, text: "Bu mutfak projesinin niteliği nedir?", type: "single",
+            options: [
+                { text: "Kendi evim / Tadilat", scores: { p3: 5, p10: 5 } }, // Nötr'den hafife pozitife
+                { text: "Yeni Ev / Sıfır Proje", scores: { p1: 10, p2: 10, p7: 5 } },
+                { text: "Yatırım / Stüdyo / Kiraya verilecek", scores: { p4: 30 } }, // BOOST: Akıllı Yatırımcı tek soruda fark atmalı
+                { text: "Yazlık / İkinci Ev", scores: { p8: 40 } } // MEGA BOOST: Dinginlik Arayan için en kritik soru
+            ]
+        },
+        {
+            id: 2, text: "Zaman kısıtınız nedir?", type: "single",
+            options: [
+                { text: "Çok acil, hemen bitmeli", scores: { p9: 40, p4: 10 } }, // MEGA BOOST: Hız Odaklıyı kurtaran soru
+                { text: "Standart süreç (1-2 ay)", scores: { p3: 5, p5: 5 } },
+                { text: "Zaman sorun değil, mükemmel olsun", scores: { p2: 15, p10: 15, p6: 10 } } // Nostaljik ve Lüks için artış
+            ]
+        },
+        {
+            id: 3, text: "Mutfak alanının durumu?", type: "single",
+            options: [
+                { text: "Dar / Küçük", scores: { p4: 15, p9: 10 } },
+                { text: "Geniş / Ada Müsait", scores: { p7: 25, p5: 15, p2: 10 } }, // Sosyal Ev Sahibi için kritik
+                { text: "Standart", scores: { p3: 5 } }
+            ]
+        },
+        {
+            id: 4, text: "Hane Halkı (Birden fazla seçebilirsiniz)", type: "multi",
+            options: [
+                { text: "Yalnız / Çift", scores: { p1: 15, p4: 10, p5: 5 } }, // Teknolojiye puan artışı
+                { text: "Çocuklar Var", scores: { p3: 20 } }, // Konfor Odaklı tek başına yetmesin diye 15->20 (diğer soruları düşürdük)
+                { text: "Evcil Hayvan Var", scores: { p6: 15, p3: 10 } }, // Ekolojik/Doğal için fırsat
+                { text: "Kalabalık Aile", scores: { p7: 15, p10: 10, p3: 10 } }
+            ]
+        },
+        {
+            id: 5, text: "Mutfak sizin için ne ifade ediyor?", type: "single",
+            options: [
+                { text: "Vitrin (Sosyal Alan)", scores: { p7: 30, p1: 10, p2: 10 } }, // Sosyal Ev Sahibi ana sorusu
+                { text: "Operasyon (Yemek Yapma)", scores: { p5: 35 } }, // BOOST: Gurme Şef tek atış
+                { text: "Sığınak (Huzur)", scores: { p8: 25, p6: 20 } }, // Dinginlik ve Doğal için boost
+                { text: "Kalp (Aile Odaklı)", scores: { p10: 25, p3: 10 } }, // Nostaljik için boost, Konfor için fren
+                { text: "İstasyon (Pratik)", scores: { p9: 20, p4: 15 } } // Hız ve Yatırımcı
+            ]
+        },
+        {
+            id: 6, text: "Şu anki mutfakta en büyük şikayetiniz?", type: "single",
+            options: [
+                { text: "Dağınıklık / Yer yok", scores: { p5: 15, p3: 5, p4: 5 } },
+                { text: "Temizlik Zorluğu / Lekeler", scores: { p3: 15, p9: 10 } }, // Konfor puanı dengelendi
+                { text: "Demode Görünüm", scores: { p1: 15, p2: 10, p7: 5 } },
+                { text: "Karanlık / Basık", scores: { p8: 20, p6: 10 } } // Dinginlik için fırsat
+            ]
+        },
+        {
+            id: 7, text: "Hangi tasarım dili size yakın?", type: "single",
+            options: [
+                { text: "Modern & Minimal", scores: { p1: 20, p5: 10, p4: 5 } }, // Teknoloji puanı makul seviyede
+                { text: "Klasik & Gösterişli", scores: { p2: 30, p10: 10 } }, // Lüks puanı artırıldı
+                { text: "Country & Doğal", scores: { p10: 30, p6: 20, p8: 15 } }, // BOOST: Nostaljik için en önemli soru
+                { text: "Endüstriyel", scores: { p1: 15, p5: 15, p7: 10 } }
+            ]
+        },
+        {
+            id: 8, text: "Malzeme ve Doku tercihiniz?", type: "single",
+            options: [
+                { text: "Doğal Ahşap Dokusu", scores: { p6: 25, p10: 15, p8: 10 } }, // Doğal yaşam boost
+                { text: "Mat ve Soft Renkler", scores: { p3: 15, p8: 15, p1: 5 } },
+                { text: "Parlak ve Canlı", scores: { p2: 25, p7: 15 } },
+                { text: "Koyu ve Maskülen", scores: { p1: 20, p5: 10 } }
+            ]
+        },
+        {
+            id: 9, text: "Yemek pişirme alışkanlığınız?", type: "single",
+            options: [
+                { text: "Standart Pişirme", scores: { p3: 10, p10: 5 } },
+                { text: "Gurme / Profesyonel", scores: { p5: 40 } }, // MEGA BOOST: Şefi belirleyen tek soru
+                { text: "Minimum / Pratik", scores: { p9: 20, p4: 15, p1: 5 } }
+            ]
+        },
+        {
+            id: 10, text: "Depolama ihtiyacınız?", type: "single",
+            options: [
+                { text: "Maksimum Kiler / Stok", scores: { p3: 15, p5: 15 } },
+                { text: "Vitrin / Sergileme", scores: { p7: 20, p2: 15, p10: 10 } },
+                { text: "Standart / Kapalı Dolap", scores: { p4: 10, p1: 5 } }
+            ]
+        },
+        {
+            id: 11, text: "Sürdürülebilirlik önceliğiniz?", type: "single",
+            options: [
+                { text: "Çok Önemli / Vazgeçilmez", scores: { p6: 40 } }, // MEGA BOOST: Doğal Yaşam tek atış
+                { text: "Önemli ama estetik de önemli", scores: { p6: 15, p8: 10, p3: 5 } },
+                { text: "Öncelik Değil", scores: { p4: 5, p9: 5 } }
+            ]
+        },
+        {
+            id: 12, text: "Teknoloji entegrasyonu?", type: "single",
+            options: [
+                { text: "High-Tech (Akıllı sistemler)", scores: { p1: 30, p5: 5 } }, // Teknoloji boost
+                { text: "Geleneksel / Manuel", scores: { p10: 25, p6: 10, p8: 5 } } // Nostaljik boost
+            ]
+        },
+        {
+            id: 13, text: "Bütçe yaklaşımınız?", type: "single",
+            options: [
+                { text: "Esnek / Prestij Odaklı", scores: { p2: 30, p1: 10, p7: 10 } }, // Lüks belirleyici
+                { text: "Fiyat / Performans", scores: { p3: 20, p5: 10, p10: 5 } },
+                { text: "Ekonomik / Bütçe Dostu", scores: { p4: 25, p9: 15 } } // Yatırımcı belirleyici
+            ]
+        },
+         {
+            id: 14, text: "Karar verme faktörünüz?", type: "single",
+            options: [
+                { text: "Tasarım Heyecanı", scores: { p1: 10, p2: 5, p7: 5 } },
+                { text: "Güven / Garanti", scores: { p3: 15, p10: 5 } },
+                { text: "Hız / Teslimat", scores: { p9: 30 } }, // Hız Odaklı son vuruş
+                { text: "Maliyet", scores: { p4: 15 } }
+            ]
+        }
     ];
 
     // -----------------------------
@@ -1507,17 +1477,30 @@
       }
     }
 
+    function getOptionId(opt, index){
+      return opt.id != null ? String(opt.id) : String(index);
+    }
+
+    function getOptionById(q, optId){
+      if(q.options.length && q.options[0].id != null){
+        return q.options.find(o=>String(o.id)===String(optId)) || null;
+      }
+      const index = Number(optId);
+      if(Number.isNaN(index)) return null;
+      return q.options[index] || null;
+    }
+
     function selectionsReadable(answers){
       const out = [];
-      for(const q of QUESTIONS){
+      for(const q of questions){
         const a = answers[q.id];
         if(!a) continue;
         if(Array.isArray(a)){
-          const labels = a.map(id => (q.options.find(o=>o.id===id)||{}).label).filter(Boolean);
-          if(labels.length) out.push(`${q.title} -> ${labels.join(", ")}`);
+          const labels = a.map(id => (getOptionById(q, id) || {}).text).filter(Boolean);
+          if(labels.length) out.push(`${q.text} -> ${labels.join(", ")}`);
         }else{
-          const label = (q.options.find(o=>o.id===a)||{}).label;
-          if(label) out.push(`${q.title} -> ${label}`);
+          const label = (getOptionById(q, a) || {}).text;
+          if(label) out.push(`${q.text} -> ${label}`);
         }
       }
       return out;
@@ -1532,11 +1515,25 @@
       return s;
     }
 
+    const SCORE_KEY_MAP = {
+      p1: "tech",
+      p2: "luxury",
+      p3: "comfort",
+      p4: "smart",
+      p5: "gourmet",
+      p6: "eco",
+      p7: "social",
+      p8: "coastal",
+      p9: "quick",
+      p10: "nostalgic"
+    };
+
     function addPoints(scores, points){
       if(!points) return;
       for(const k in points){
-        if(scores[k] == null) continue;
-        scores[k] += points[k] || 0;
+        const targetKey = SCORE_KEY_MAP[k] || k;
+        if(scores[targetKey] == null) continue;
+        scores[targetKey] += points[k] || 0;
       }
     }
 
@@ -1550,36 +1547,36 @@
         petMaterialRecommendation: false
       };
 
-      for(const q of QUESTIONS){
+      for(const q of questions){
         const a = answers[q.id];
         if(!a) continue;
 
         if(q.type === "multi"){
           const arr = Array.isArray(a) ? a : [];
           arr.forEach(optId=>{
-            const opt = q.options.find(o=>o.id===optId);
+            const opt = getOptionById(q, optId);
             if(!opt) return;
-            addPoints(scores, opt.points);
+            addPoints(scores, opt.scores);
           });
         }else{
-          const opt = q.options.find(o=>o.id===a);
+          const opt = getOptionById(q, a);
           if(!opt) continue;
-          addPoints(scores, opt.points);
+          addPoints(scores, opt.scores);
 
-          if(q.id === "q13") addPoints(tieBudget, opt.points);
-          if(q.id === "q7") addPoints(tieStyle, opt.points);
-
-          if(q.id === "q6" && opt.trigger === "petMaterial"){
-            triggers.petMaterialRecommendation = true;
-          }
+          if(q.id === 13) addPoints(tieBudget, opt.scores);
+          if(q.id === 7) addPoints(tieStyle, opt.scores);
         }
       }
 
       // Special Q4 logic: Children + Pets => +20 comfort + High Durability Alert
-      const q4 = answers.q4;
+      const q4 = answers[4];
       const q4arr = Array.isArray(q4) ? q4 : [];
-      const hasChildren = q4arr.includes("children");
-      const hasPets = q4arr.includes("pets");
+      const q4Options = questions.find(q=>q.id === 4)?.options || [];
+      const q4Labels = q4arr
+        .map(id => (getOptionById({ options: q4Options }, id) || {}).text)
+        .filter(Boolean);
+      const hasChildren = q4Labels.includes("Çocuklar Var");
+      const hasPets = q4Labels.includes("Evcil Hayvan Var");
       if(hasChildren && hasPets){
         scores.comfort += 20;
         triggers.highDurabilityAlert = true;
@@ -1650,15 +1647,15 @@
     }
 
     function renderQuestion(){
-      const q = QUESTIONS[STATE.index];
-      const total = QUESTIONS.length;
+      const q = questions[STATE.index];
+      const total = questions.length;
 
       $("qCount").textContent = `Soru ${STATE.index + 1}`;
       $("qTotal").textContent = `/ ${total}`;
-      $("qId").textContent = q.label;
+      $("qId").textContent = q.label || `Q${q.id}`;
 
       $("qType").textContent = q.type === "multi" ? "Çoklu seçim" : "Tek seçim";
-      $("qTitle").textContent = q.title;
+      $("qTitle").textContent = q.text;
       $("qSub").textContent = q.subtitle || "";
 
       const pct = Math.round(((STATE.index + 1) / total) * 100);
@@ -1675,15 +1672,16 @@
       renderChips(calc.triggers, $("triggerChips"));
 
       const selected = STATE.answers[q.id];
-      const selectedArr = Array.isArray(selected) ? selected : [];
-      const selectedOne = (typeof selected === "string") ? selected : "";
+      const selectedArr = Array.isArray(selected) ? selected.map(String) : [];
+      const selectedOne = selected != null ? String(selected) : "";
 
       const optionsEl = $("options");
       optionsEl.innerHTML = "";
 
-      q.options.forEach(opt=>{
+      q.options.forEach((opt, index)=>{
+        const optId = getOptionId(opt, index);
         const el = document.createElement("div");
-        const isSel = q.type === "multi" ? selectedArr.includes(opt.id) : selectedOne === opt.id;
+        const isSel = q.type === "multi" ? selectedArr.includes(optId) : selectedOne === optId;
         el.className = `opt ${isSel ? "selected" : ""}`;
         el.setAttribute("role","button");
         el.setAttribute("tabindex","0");
@@ -1694,7 +1692,7 @@
           </div>
           <div class="optMain">
             <div class="optLabel">
-              <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${opt.label}</span>
+              <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${opt.text}</span>
               <span class="tag">${isSel ? (q.type==="multi" ? "Seçildi" : "Aktif") : ""}</span>
             </div>
             ${opt.desc ? `<div class="optHint">${opt.desc}</div>` : ""}
@@ -1704,12 +1702,12 @@
         const toggle = ()=>{
           if(q.type === "multi"){
             const arr = Array.isArray(STATE.answers[q.id]) ? [...STATE.answers[q.id]] : [];
-            const ix = arr.indexOf(opt.id);
+            const ix = arr.indexOf(optId);
             if(ix >= 0) arr.splice(ix, 1);
-            else arr.push(opt.id);
+            else arr.push(optId);
             STATE.answers[q.id] = arr;
           }else{
-            STATE.answers[q.id] = opt.id;
+            STATE.answers[q.id] = optId;
           }
           renderQuestion();
           updateNav();
@@ -1727,13 +1725,13 @@
     }
 
     function updateNav(){
-      const q = QUESTIONS[STATE.index];
+      const q = questions[STATE.index];
       const canNext = isAnswered(q, STATE.answers);
 
       $("backBtn").disabled = STATE.index === 0;
       $("nextBtn").disabled = !canNext;
 
-      const isLast = STATE.index === QUESTIONS.length - 1;
+      const isLast = STATE.index === questions.length - 1;
       $("nextBtn").textContent = isLast ? "Sonucu Gör" : "Devam";
       $("navStatus").textContent = canNext ? "Hazır" : "Seçim yap";
     }
@@ -1971,18 +1969,18 @@
     });
 
     $("backBtn").addEventListener("click", ()=>{
-      STATE.index = clamp(STATE.index - 1, 0, QUESTIONS.length - 1);
+      STATE.index = clamp(STATE.index - 1, 0, questions.length - 1);
       renderQuestion();
     });
 
     $("nextBtn").addEventListener("click", ()=>{
-      const q = QUESTIONS[STATE.index];
+      const q = questions[STATE.index];
       if(!isAnswered(q, STATE.answers)){
         toast("Devam etmek için seçim yap.");
         return;
       }
 
-      const isLast = STATE.index === QUESTIONS.length - 1;
+      const isLast = STATE.index === questions.length - 1;
       if(isLast){
         syncCustomerFromInputs();
         setScreen("result");
@@ -1991,7 +1989,7 @@
         return;
       }
 
-      STATE.index = clamp(STATE.index + 1, 0, QUESTIONS.length - 1);
+      STATE.index = clamp(STATE.index + 1, 0, questions.length - 1);
       renderQuestion();
     });
 
