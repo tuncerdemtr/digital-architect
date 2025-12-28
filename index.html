@@ -1338,6 +1338,24 @@
       return JSON.stringify(obj, null, 2);
     }
 
+    function buildPlaceholderSvg(label){
+      const safeLabel = String(label || "").toUpperCase();
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+          <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1b222c"/>
+              <stop offset="100%" stop-color="#0f141b"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="450" fill="url(#bg)"/>
+          <rect x="36" y="36" width="728" height="378" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+          <text x="400" y="230" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="Arial, sans-serif" font-size="36" letter-spacing="6">${safeLabel}</text>
+        </svg>
+      `.trim();
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+    }
+
     function buildFileBase(payload){
       const base = (payload.customer?.name || "musteri")
         .toLowerCase()
@@ -1361,6 +1379,9 @@
       const productsHtml = db.products.map(p=>`
         <div class="card">
           <div class="label">${p.kind}</div>
+          <div class="media">
+            <img src="${p.image || buildPlaceholderSvg(p.kind)}" alt="${p.kind} görseli"/>
+          </div>
           <div class="title">${p.title}</div>
           ${p.subtitle ? `<div class="subtitle">${p.subtitle}</div>` : ""}
           ${p.meta ? `<div class="meta">${p.meta}</div>` : ""}
@@ -1395,6 +1416,19 @@
       border-radius: 12px;
       padding: 12px;
       margin-bottom: 10px;
+    }
+    .media{
+      margin-top: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      background: #f3f4f6;
+    }
+    .media img{
+      display: block;
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
     }
     .label{ font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color:#6b7280; }
     .title{ font-weight: 700; margin-top: 6px; }
@@ -1776,23 +1810,6 @@
         Model: { kicker: "MODEL" },
         Malzeme: { kicker: "MALZEME" },
         Aksesuar: { kicker: "AKSESUAR" }
-      };
-      const buildPlaceholderSvg = (label)=>{
-        const safeLabel = String(label || "").toUpperCase();
-        const svg = `
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
-            <defs>
-              <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#1b222c"/>
-                <stop offset="100%" stop-color="#0f141b"/>
-              </linearGradient>
-            </defs>
-            <rect width="800" height="450" fill="url(#bg)"/>
-            <rect x="36" y="36" width="728" height="378" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
-            <text x="400" y="230" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-family="Arial, sans-serif" font-size="36" letter-spacing="6">${safeLabel}</text>
-          </svg>
-        `.trim();
-        return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
       };
 
       db.products.forEach(p=>{
