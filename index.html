@@ -1083,9 +1083,10 @@
         title:"Proje niteliği nedir?",
         subtitle:"Müşterinin ana bağlamı: yeni ev mi, yatırım mı, yazlık mı?",
         options:[
-          { id:"newHouse", label:"Yeni Ev / Sıfır Proje", desc:"Yeni taşınma veya yeni inşaat.", icon:"home", points:{ tech:5, luxury:5 } },
+          { id:"renovation", label:"Kendi Evim / Tadilat", desc:"Mevcut evi yenileme.", icon:"home", points:{} },
+          { id:"newHouse", label:"Yeni Ev / Sıfır", desc:"Yeni taşınma veya yeni inşaat.", icon:"home", points:{ tech:5, luxury:5 } },
           { id:"investment", label:"Yatırım / Stüdyo", desc:"Kiralık veya satış odaklı.", icon:"home", points:{ smart:20 } },
-          { id:"summer", label:"Yazlık", desc:"Sahil, sezonluk kullanım.", icon:"home", points:{ coastal:20 } }
+          { id:"summer", label:"Yazlık / İkinci Ev", desc:"Sezonluk veya ikinci yaşam.", icon:"home", points:{ coastal:20 } }
         ]
       },
       {
@@ -1093,8 +1094,9 @@
         title:"Zaman kısıtı var mı?",
         subtitle:"Teslimat ve karar hızını ölçer.",
         options:[
-          { id:"urgent", label:"Acil", desc:"Hızlı karar, hızlı uygulama.", icon:"clock", points:{ quick:20, smart:10 } },
-          { id:"perfectionist", label:"Acele yok, mükemmeliyetçi", desc:"Detay odaklı, kusursuzluk arar.", icon:"clock", points:{ luxury:10, nostalgic:5 } }
+          { id:"urgent", label:"Acil / Hemen", desc:"Hızlı karar, hızlı uygulama.", icon:"clock", points:{ quick:20, smart:10 } },
+          { id:"standard", label:"Standart Süre", desc:"Normal takvim, dengeli süreç.", icon:"clock", points:{} },
+          { id:"perfectionist", label:"Mükemmeliyetçi (Zaman bol)", desc:"Detay odaklı, kusursuzluk arar.", icon:"clock", points:{ luxury:10, nostalgic:5 } }
         ]
       },
       {
@@ -1102,8 +1104,10 @@
         title:"Alan durumu nasıl?",
         subtitle:"Metrekare ve plan, öneri tipini değiştirir.",
         options:[
-          { id:"small", label:"Küçük / Dar", desc:"Verimlilik ve kompakt çözümler.", icon:"area", points:{ smart:10 } },
-          { id:"large", label:"Geniş / Ada mümkün", desc:"Sosyal akış ve güçlü pişirme hattı.", icon:"area", points:{ social:15, gourmet:10 } }
+          { id:"small", label:"Dar / Küçük", desc:"Verimlilik ve kompakt çözümler.", icon:"area", points:{ smart:10, quick:5 } },
+          { id:"standard", label:"Standart", desc:"Orta ölçekli ve dengeli plan.", icon:"area", points:{} },
+          { id:"large", label:"Geniş / Ada Müsait", desc:"Sosyal akış ve güçlü pişirme hattı.", icon:"area", points:{ social:15, gourmet:10 } },
+          { id:"freedom", label:"Mimari Özgürlük", desc:"Özel plan ve esnek yerleşim.", icon:"area", points:{ tech:10 } }
         ]
       },
       {
@@ -1111,9 +1115,10 @@
         title:"Hane halkı hangilerine uyuyor?",
         subtitle:"Çoklu seçim. Çocuk + Evcil hayvan seçilirse High Durability Alert tetikler.",
         options:[
-          { id:"singleCouple", label:"Tek kişi / Çift", desc:"Minimal düzen, teknolojiye açık.", icon:"users", points:{ tech:10 } },
-          { id:"children", label:"Çocuk", desc:"Dayanım, hijyen, güvenlik.", icon:"users", points:{ comfort:15 } },
-          { id:"pets", label:"Evcil hayvan", desc:"Sürdürülebilirlik ve kolay bakım.", icon:"users", points:{ eco:10 } }
+          { id:"singleCouple", label:"Yalnız / Çift", desc:"Minimal düzen, teknolojiye açık.", icon:"users", points:{ tech:10, smart:5 } },
+          { id:"children", label:"Çocuklar", desc:"Dayanım, hijyen, güvenlik.", icon:"users", points:{ comfort:15 } },
+          { id:"extended", label:"Geniş Aile / Yaşlı", desc:"Konfor ve sosyal kullanım.", icon:"users", points:{ comfort:10, social:5 } },
+          { id:"pets", label:"Evcil Hayvan", desc:"Dayanım, hijyen, sürdürülebilirlik.", icon:"users", points:{ comfort:5, eco:10 } }
         ]
       },
       {
@@ -1121,10 +1126,11 @@
         title:"Ana motivasyon ne?",
         subtitle:"Mutfak, müşterinin hayatında neyi temsil ediyor?",
         options:[
-          { id:"showcase", label:"Showcase / Sosyal", desc:"Misafir, sunum, eğlence.", icon:"spark", points:{ social:20 } },
-          { id:"operation", label:"Operasyon / Pişirme", desc:"Fonksiyon, istasyon mantığı.", icon:"spark", points:{ gourmet:20 } },
-          { id:"sanctuary", label:"Sanctuary / Huzur", desc:"Sakinlik, doğal his.", icon:"spark", points:{ coastal:15, eco:10 } },
-          { id:"heart", label:"Heart / Aile", desc:"Rutinler, dayanım, sıcaklık.", icon:"spark", points:{ comfort:15, nostalgic:10 } }
+          { id:"showcase", label:"Vitrin (Sosyal)", desc:"Misafir, sunum, eğlence.", icon:"spark", points:{ social:20, tech:10 } },
+          { id:"operation", label:"Operasyon (Yemek)", desc:"Fonksiyon, istasyon mantığı.", icon:"spark", points:{ gourmet:20 } },
+          { id:"sanctuary", label:"Sığınak (Huzur)", desc:"Sakinlik, doğal his.", icon:"spark", points:{ coastal:15, eco:10 } },
+          { id:"station", label:"İstasyon (Pratik)", desc:"Hızlı akış, pratik çözümler.", icon:"spark", points:{ quick:10, smart:10 } },
+          { id:"heart", label:"Kalp (Aile)", desc:"Rutinler, dayanım, sıcaklık.", icon:"spark", points:{ comfort:15, nostalgic:10 } }
         ]
       },
       {
@@ -1132,9 +1138,10 @@
         title:"En büyük acı noktası ne?",
         subtitle:"Problemi seç, sistem çözümü bağlasın.",
         options:[
+          { id:"clutter", label:"Dağınıklık", desc:"Organizer ve depolama ihtiyacı.", icon:"broom", points:{ gourmet:10, comfort:5 } },
           { id:"cleaning", label:"Temizlik / Leke", desc:"Kolay silinebilir, dayanıklı yüzeyler.", icon:"broom", points:{ comfort:20 }, trigger:"petMaterial" },
-          { id:"clutter", label:"Dağınıklık", desc:"Organizer ve depolama ihtiyacı.", icon:"broom", points:{ gourmet:10 } },
-          { id:"outdated", label:"Eski görünüm", desc:"Modernleşme isteği.", icon:"broom", points:{ tech:10 } }
+          { id:"outdated", label:"Demode Görünüm", desc:"Modernleşme isteği.", icon:"broom", points:{ tech:10, luxury:5 } },
+          { id:"dark", label:"Karanlık / Basık", desc:"Ferahlık ve ışık ihtiyacı.", icon:"broom", points:{ coastal:10 } }
         ]
       },
       {
@@ -1142,23 +1149,23 @@
         title:"Tasarım dili hangisi?",
         subtitle:"Tie-break için kritik (2. öncelik).",
         options:[
-          { id:"modern", label:"Modern / Minimal", desc:"Kulpsuz, net çizgiler.", icon:"style", points:{ tech:20 } },
-          { id:"classic", label:"Klasik / Grand", desc:"Çerçeveli kapak, prestij.", icon:"style", points:{ luxury:20 } },
-          { id:"country", label:"Country / Natural", desc:"Ahşap dokular, sıcaklık.", icon:"style", points:{ eco:15, nostalgic:15 } },
-          { id:"industrial", label:"Industrial", desc:"Kontrast, metal hissi.", icon:"style", points:{ tech:10 } }
+          { id:"modern", label:"Modern & Minimal", desc:"Kulpsuz, net çizgiler.", icon:"style", points:{ tech:20, gourmet:5 } },
+          { id:"classic", label:"Klasik & Gösterişli", desc:"Çerçeveli kapak, prestij.", icon:"style", points:{ luxury:20, social:5 } },
+          { id:"country", label:"Country & Doğal", desc:"Ahşap dokular, sıcaklık.", icon:"style", points:{ eco:15, nostalgic:15, coastal:10 } },
+          { id:"industrial", label:"Endüstriyel", desc:"Kontrast, metal hissi.", icon:"style", points:{ tech:10, social:10 } }
         ]
       },
 
-      // Added from original 13-question set
+      // Extended question set
       {
         id:"q8", label:"Q8", type:"single",
         title:"Malzeme hissi hangisi?",
         subtitle:"Yüzey ve dokunun karakterini seç.",
         options:[
-          { id:"wood", label:"Ahşap", desc:"Doğal doku ve sıcaklık.", icon:"material", points:{ eco:20 } },
-          { id:"matsoft", label:"Mat / Soft", desc:"Yumuşak, sakin yüzey.", icon:"material", points:{ comfort:10 } },
-          { id:"gloss", label:"Yüksek parlak", desc:"Gösterişli ve premium algı.", icon:"material", points:{ luxury:15 } },
-          { id:"dark", label:"Koyu ton", desc:"Kontrast ve modern güç.", icon:"material", points:{ tech:15 } }
+          { id:"wood", label:"Doğal Ahşap", desc:"Doğal doku ve sıcaklık.", icon:"material", points:{ eco:20, nostalgic:10 } },
+          { id:"matsoft", label:"Mat / Soft", desc:"Yumuşak, sakin yüzey.", icon:"material", points:{ comfort:10, coastal:10 } },
+          { id:"gloss", label:"Parlak / Canlı", desc:"Gösterişli ve premium algı.", icon:"material", points:{ luxury:15, social:10 } },
+          { id:"dark", label:"Koyu / Maskülen", desc:"Kontrast ve modern güç.", icon:"material", points:{ tech:15, gourmet:5 } }
         ]
       },
       {
@@ -1166,8 +1173,9 @@
         title:"Pişirme yaklaşımı nasıl?",
         subtitle:"Kullanım yoğunluğu öneriyi değiştirir.",
         options:[
-          { id:"gourmet", label:"Gurme", desc:"Sık pişirir, ekipman kullanır.", icon:"cook", points:{ gourmet:25 } },
-          { id:"practical", label:"Pratik", desc:"Hız, basit rutinler.", icon:"cook", points:{ smart:10 } }
+          { id:"standard", label:"Standart", desc:"Günlük düzen, dengeli kullanım.", icon:"cook", points:{ comfort:5 } },
+          { id:"gourmet", label:"Gurme Seviyesi", desc:"Sık pişirir, ekipman kullanır.", icon:"cook", points:{ gourmet:25 } },
+          { id:"practical", label:"Minimum / Pratik", desc:"Hız, basit rutinler.", icon:"cook", points:{ smart:10, quick:10 } }
         ]
       },
       {
@@ -1175,8 +1183,9 @@
         title:"Depolamada öncelik ne?",
         subtitle:"Düzen ve sergileme tercihleri.",
         options:[
-          { id:"pantry", label:"Kiler / Pantry", desc:"Gizli düzen, hızlı erişim.", icon:"storage", points:{ comfort:10 } },
-          { id:"vitrine", label:"Vitrin / Sergileme", desc:"Görsel etki ve sunum.", icon:"storage", points:{ social:15 } }
+          { id:"standard", label:"Standart", desc:"Temel depolama yeterli.", icon:"storage", points:{} },
+          { id:"pantry", label:"Kiler Sistemleri", desc:"Gizli düzen, hızlı erişim.", icon:"storage", points:{ comfort:10, gourmet:10 } },
+          { id:"vitrine", label:"Vitrin / Sergileme", desc:"Görsel etki ve sunum.", icon:"storage", points:{ social:15, luxury:10 } }
         ]
       },
       {
@@ -1184,8 +1193,9 @@
         title:"Sürdürülebilirlik önemi ne kadar?",
         subtitle:"Malzeme ve seçim önceliği.",
         options:[
-          { id:"high", label:"Yüksek", desc:"Sürdürülebilir seçim çok önemli.", icon:"leaf", points:{ eco:25 } },
-          { id:"normal", label:"Normal", desc:"Denge önemli.", icon:"leaf", points:{} }
+          { id:"high", label:"Çok Önemli (Eco)", desc:"Sürdürülebilir seçim çok önemli.", icon:"leaf", points:{ eco:25 } },
+          { id:"normal", label:"Önemli ama...", desc:"Denge önemli.", icon:"leaf", points:{ eco:5 } },
+          { id:"low", label:"Öncelik Değil", desc:"Diğer kriterler öncelikli.", icon:"leaf", points:{} }
         ]
       },
       {
@@ -1193,8 +1203,8 @@
         title:"Teknoloji yaklaşımı nasıl?",
         subtitle:"Akıllı çözümler mi, geleneksel mi?",
         options:[
-          { id:"hightech", label:"High-Tech", desc:"Entegre, akıllı aksesuarlar.", icon:"chip", points:{ tech:20 } },
-          { id:"traditional", label:"Geleneksel", desc:"Klasik kullanım, sıcak his.", icon:"chip", points:{ nostalgic:15 } }
+          { id:"hightech", label:"High-Tech Olsun", desc:"Entegre, akıllı aksesuarlar.", icon:"chip", points:{ tech:20 } },
+          { id:"traditional", label:"Geleneksel Olsun", desc:"Klasik kullanım, sıcak his.", icon:"chip", points:{ nostalgic:15, eco:5 } }
         ]
       },
       {
@@ -1202,9 +1212,20 @@
         title:"Bütçe yaklaşımı nasıl?",
         subtitle:"Tie-break için kritik (1. öncelik).",
         options:[
-          { id:"flexible", label:"Esnek / Prestij", desc:"Premium kararlar.", icon:"wallet", points:{ luxury:20 } },
-          { id:"pp", label:"Fiyat / Performans", desc:"Dengeli seçim.", icon:"wallet", points:{ comfort:10 } },
-          { id:"economic", label:"Ekonomik", desc:"Net bütçe, verim.", icon:"wallet", points:{ smart:15 } }
+          { id:"flexible", label:"Esnek / Prestij", desc:"Premium kararlar.", icon:"wallet", points:{ luxury:20, tech:5 } },
+          { id:"pp", label:"Fiyat / Performans", desc:"Dengeli seçim.", icon:"wallet", points:{ comfort:10, gourmet:5 } },
+          { id:"economic", label:"Ekonomik", desc:"Net bütçe, verim.", icon:"wallet", points:{ smart:15, quick:5 } }
+        ]
+      },
+      {
+        id:"q14", label:"Q14", type:"single",
+        title:"Karar faktörü hangisi?",
+        subtitle:"Müşteriyi karar verdiren ana unsur.",
+        options:[
+          { id:"design", label:"Tasarım Heyecanı", desc:"Görsel etki ve heyecan.", icon:"spark", points:{ tech:5, luxury:5 } },
+          { id:"guarantee", label:"Güven / Garanti", desc:"Uzun ömür ve güvence.", icon:"spark", points:{ comfort:10, luxury:5 } },
+          { id:"speed", label:"Hız", desc:"Süreç ve teslimat hızı.", icon:"spark", points:{ quick:15 } },
+          { id:"cost", label:"Maliyet", desc:"Net bütçe ve verim.", icon:"spark", points:{ smart:10 } }
         ]
       }
     ];
@@ -1761,7 +1782,8 @@
         q10:"pantry",
         q11:"high",
         q12:"hightech",
-        q13:"pp"
+        q13:"pp",
+        q14:"design"
       };
       setScreen("quiz");
       STATE.index = 0;
