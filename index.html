@@ -511,24 +511,6 @@
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
-    .pcHead{
-      padding: 14px 14px 12px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      display:flex;
-      align-items:center;
-      justify-content:flex-start;
-      gap:10px;
-    }
-    .pcChip{
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
-      font-size: 12px;
-      font-weight: 850;
-      color: rgba(255,255,255,.76);
-    }
     .pcBody{ padding: 14px; }
     .pcBody .t{
       font-weight: 900;
@@ -1801,9 +1783,6 @@
         const el = document.createElement("div");
         el.className = "pcard";
         el.innerHTML = `
-          <div class="pcHead">
-            <div class="kicker" style="letter-spacing:.18em;">${labels.kicker}</div>
-          </div>
           <div class="pcMedia">
             <img src="${imageSrc}" alt="${labels.kicker} görseli" loading="lazy"/>
           </div>
